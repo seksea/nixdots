@@ -113,6 +113,9 @@
     username = "will";
   };
 
+  # Enable the mullvad VPN
+  mullvad.enable = true;
+
   # Enable the Plex Media Server
   plex.enable = true;
 

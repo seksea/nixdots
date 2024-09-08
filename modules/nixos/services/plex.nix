@@ -69,6 +69,23 @@
         declarative = true;
         config = {
           enabled_plugins = [ "Label" ];
+          stop_seed_at_ratio = true;
+          dont_count_slow_torrents = true;
+          max_active_seeding = 50;
+          max_active_downloading = 50;
+          max_active_limit = 200;
+          proxy = {
+            type = 2;
+            hostname = "10.8.0.1";
+            username = "";
+            password = "";
+            port = 1080;
+            proxy_hostnames = true;
+            proxy_peer_connections = true;
+            proxy_tracker_connections = true;
+            force_proxy = true;
+            anonymous_mode = false;
+          };
         };
         authFile = pkgs.writeTextFile {
           name = "deluge-auth";
