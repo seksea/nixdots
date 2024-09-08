@@ -22,6 +22,8 @@
       userEmail = config.git.email;
     };
 
+    # When it asks for a username, give it username, when it asks 
+    # for password then give it your GitHub Personal Access Token
     programs.gh.gitCredentialHelper.enable = true;
   };
 }

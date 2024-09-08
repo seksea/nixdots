@@ -12,11 +12,13 @@ systemConfig: { config, pkgs, ... }: {
   firefox.enable = true;
 
   # git source control
-  git.enable = true;
-  git.username = "seksea";
-  git.email = "s3ksea@gmail.com";
+  git = {
+    enable = true;
+    email = "s3ksea@gmail.com";
+    username = "seksea";
+  };
 
-  # neovim with nixvim
+  # neovim (spacevim for now)
   nvim.enable = true;
 
   # zellij terminal multiplexer
