@@ -1,12 +1,5 @@
 { pkgs, lib, config, ... }: {
 
-  # Register SSH keys in your nixosModules/main-user.nix like so:
-  #
-  # openssh.authorizedKeys.keys = [
-  #   # Generate keys on your client using `ssh-keygen -t rsa`
-  #   "ssh-rsa AA..."
-  # ];
-
   options = {
 
     plex.enable = lib.mkEnableOption "Plex Media Server";
@@ -25,45 +18,53 @@
     ];
 
     services = {
+      # Plex Media Server (web access at port 32400)
       plex = {
         enable = true;
         group = "multimedia";
         openFirewall = true;
       };
 
+      # TV Indexer (port 7878)
       sonarr = {
         enable = true;
         group = "multimedia";
         openFirewall = true;
       };
-      
+
+      # Movie Indexer (port 8989)
       radarr = {
         enable = true;
         group = "multimedia";
         openFirewall = true;
       };
 
+      # Subtitles Indexer (port 6767)
       bazarr = {
         enable = true;
         group = "multimedia";
         openFirewall = true;
+        listenPort = 6767;
       };
-      
+
+      # Torrent Indexer (port 9696)
       prowlarr = {
         enable = true;
         openFirewall = true;
       };
 
-      nzbget = {
+      /*nzbget = {
         enable = true;
         group = "multimedia";
-      };
+      };*/
 
+      # Torrent web client (port 8112)
       deluge = {
         enable = true;
         group = "multimedia";
         web.enable = true;
         web.openFirewall = true;
+        web.port = 8112;
         dataDir = "/media/torrent";
         declarative = true;
         config = {
