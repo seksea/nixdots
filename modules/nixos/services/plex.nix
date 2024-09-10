@@ -11,14 +11,16 @@
     users.users."${config.main-user.username}".extraGroups = [ "multimedia" ];
     
     systemd.tmpfiles.rules = [
-      "d /media 0770 - multimedia - -"
-      "d /media/movies 0770 - multimedia - -"
-      "d /media/torrent 0770 - multimedia - -"
-      "d /media/tv 0770 - multimedia - -"
+      "d /media 1777 - multimedia - -"
+      "d /media/movies 1777 - multimedia - -"
+      "d /media/music 1777 - multimedia - -"
+      "d /media/torrent 1777 - multimedia - -"
+      "d /media/tv 1777 - multimedia - -"
     ];
 
     # !! Important !!
-    # For any of these services, if you want them to use mullvad please go to the associated
+    # For any of these services, if you want them to use mullvad (if your ISP 
+    # blocks trackers then you will want this) please go to the associated
     # web UI and setup a SOCKS5 proxy to 10.8.0.1:1080
     
     services = {
@@ -29,27 +31,33 @@
         openFirewall = true;
       };
 
-      # TV Indexer (web UI at port 7878)
-      # Please go into the settings of
+      # TV Program Collection Manager (web UI at port 7878)
       sonarr = {
         enable = true;
         group = "multimedia";
         openFirewall = true;
       };
 
-      # Movie Indexer (web UI at port 8989)
+      # Movie Collection Manager (web UI at port 8989)
       radarr = {
         enable = true;
         group = "multimedia";
         openFirewall = true;
       };
 
-      # Subtitles Indexer (web UI at port 6767)
+      # Subtitles Manager (integrates with Radarr and Sonarr) (web UI at port 6767)
       bazarr = {
         enable = true;
         group = "multimedia";
         openFirewall = true;
         listenPort = 6767;
+      };
+
+      # Music Collection Manager (web UI at port 8686)
+      lidarr = {
+        enable = true;
+        group = "multimedia";
+        openFirewall = true;
       };
 
       # Torrent Indexer (web UI at port 9696)
