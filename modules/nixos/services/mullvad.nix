@@ -22,5 +22,13 @@
     services.openvpn.servers = {
       mullvad_gb_all = { config = '' config /etc/openvpn/mullvad_gb_all.conf ''; };
     };
+
+    # Test socks5 proxy script
+    environment.systemPackages = [
+      (pkgs.writeShellScriptBin "test-mullvad-vpn" 
+      ''
+        ${pkgs.curl}/bin/curl -x socks5://10.8.0.1:1080 http://example.com
+      '')
+    ];
   };
 }
