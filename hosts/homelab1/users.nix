@@ -1,5 +1,4 @@
-
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, config, ... }:
 {
 
   imports = [
@@ -13,11 +12,10 @@
     username = "will";
   };
 
-
   # Set up home manager
   home-manager = {
     users = {
       ${config.main-user.username} = (import ./home.nix) config;
     };
   };
-};
+}
