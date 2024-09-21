@@ -9,7 +9,7 @@
 
   options = {
 
-    minecraft-server.enable = lib.mkEnableOption "SSH server";
+    ssh-server.enable = lib.mkEnableOption "SSH server";
 
     ssh-server.port = lib.mkOption {
       description = "Which port should the SSH server use";

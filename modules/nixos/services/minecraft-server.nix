@@ -10,14 +10,25 @@
     };
   };
 
+  imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
+
   config = lib.mkIf config.minecraft-server.enable {
-    imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
     nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
 
-    # Open port
-    networking.firewall = {
-      allowedTCPPorts = [ config.minecraft-server.port ];
-      allowedUDPPorts = [ config.minecraft-server.port ];
+    services.minecraft-servers = {
+      enable = true;
+      eula = true;
+      openFirewall = true;
+
+      servers = {
+        minecraft-server = {
+          enable = true;
+
+          serverProperties = {
+            server-port = config.minecraft-server.port;
+          };
+        };
+      };
     };
   };
 }
