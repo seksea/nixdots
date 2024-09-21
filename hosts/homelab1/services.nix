@@ -1,5 +1,8 @@
 { config, pkgs, lib, inputs, ... }:
 {
+  minecraft-server = {
+    enable = true;
+  };
 
   # Enable the mullvad VPN
   mullvad.enable = true;

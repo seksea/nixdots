@@ -66,6 +66,29 @@
         openFirewall = true;
       };
 
+      # Soulseek daemon (file sharing platform) (web UI at port 5030)
+      slskd = {
+        # enable = true;
+        group = "multimedia";
+        domain = null;
+        environmentFile = "/etc/slskd.env";
+        settings = {
+          soulseek = {
+            address = "vps.slsknet.org";
+            port = 2271;
+            
+            connection = {
+              proxy = {
+                enabled = true;
+                address = "10.8.0.1"; # mullvad
+                port = 1080;
+              };
+            };
+          };
+          shares.directories = ["/media/tv" "/media/movies" "/media/music"];
+        };
+      };
+
       /*nzbget = {
         enable = true;
         group = "multimedia";
@@ -111,6 +134,11 @@
           '';
         };
       };
+    };
+    networking.firewall = {
+      # Slskd port 
+      allowedTCPPorts = [ 5030 ];
+      allowedUDPPorts = [ 5030 ];
     };
   };
 }

@@ -5,6 +5,7 @@
   imports = [
     ./main-user.nix
 
+    ./services/minecraft-server.nix
     ./services/mullvad.nix
     ./services/openvpn-server.nix
     ./services/plex.nix
